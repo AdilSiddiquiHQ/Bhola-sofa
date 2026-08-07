@@ -12,6 +12,7 @@ const Catalog = () => {
   const { toggleWishlist, isInWishlist } = useWishlist();
   const { addToCart, isInCart } = useCart();
   const [products, setProducts] = useState([]);
+  const [filter, setFilter] = useState('All');
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
@@ -60,19 +61,24 @@ const Catalog = () => {
       
       <div className="container section">
         <div className="catalog-filters">
-          <button className="filter-btn active">All</button>
-          <button className="filter-btn">Sofas</button>
-          <button className="filter-btn">Armchairs</button>
-          <button className="filter-btn">Tables</button>
+          {['All', 'Sofa', 'Bed', 'Dining', 'Chair', 'Table', 'Decor'].map(category => (
+            <button 
+              key={category} 
+              className={`filter-btn ${filter === category ? 'active' : ''}`}
+              onClick={() => setFilter(category)}
+            >
+              {category}
+            </button>
+          ))}
         </div>
 
         <div className="product-grid">
           {loading ? (
             <div style={{ textAlign: 'center', gridColumn: '1 / -1', padding: '5rem' }}><Loader className="spinner" /> Loading products...</div>
-          ) : products.length === 0 ? (
+          ) : filteredProducts.length === 0 ? (
             <div style={{ textAlign: 'center', gridColumn: '1 / -1', padding: '5rem' }}>No products found.</div>
           ) : (
-            products.map((product) => (
+            filteredProducts.map((product) => (
               <div key={product.id} className="product-card">
                 <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                   <div className="product-image-container">
