@@ -193,10 +193,12 @@
 
 .form-group input, .form-group select, .form-group textarea {
   width: 100%;
+  max-width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 .image-upload-area {
@@ -248,6 +250,32 @@
 .btn-save {
   background: #222;
   color: white;
+}
+
+.btn-ai-generate {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: opacity 0.3s;
+}
+
+.btn-ai-generate:hover {
+  opacity: 0.9;
+}
+
+.btn-ai-generate:disabled {
+  background: #999;
+  cursor: not-allowed;
 }
 
 .spinner {

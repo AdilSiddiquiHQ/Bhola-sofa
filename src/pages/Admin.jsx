@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
-import { Trash2, Edit, Plus, Image as ImageIcon, Loader, LogOut } from 'lucide-react';
+import { Trash2, Edit, Plus, Image as ImageIcon, Loader, LogOut, Wand2 } from 'lucide-react';
 import './Admin.css';
 
 const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'bholasofa_admin_2026';
@@ -26,6 +26,7 @@ export default function Admin() {
     image_url: ''
   });
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   useEffect(() => {
     checkAuth();
@@ -106,9 +107,81 @@ export default function Admin() {
       setFormData({ ...formData, image_url: data.publicUrl });
     } catch (error) {
       console.error('Error uploading image:', error.message);
-      alert('Error uploading image');
+      alert('Error uploading image.');
     } finally {
       setUploadingImage(false);
+    }
+  };
+
+  const handleGenerateAI = async () => {
+    if (!formData.image_url) {
+      alert("Please upload or provide an image URL first.");
+      return;
+    }
+    
+    setIsGenerating(true);
+    try {
+      const imageResponse = await fetch(formData.image_url);
+      const blob = await imageResponse.blob();
+      
+      const base64Promise = new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result.split(',')[1]);
+        reader.readAsDataURL(blob);
+      });
+      const base64Data = await base64Promise;
+      
+      const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+      
+      const prompt = `You are a professional furniture copywriter. Look at this image of a furniture product. 
+      Generate a catchy, premium Title and a short, beautiful Description for a furniture store. 
+      Return ONLY a JSON object in this exact format without markdown: {"name": "Product Name", "description": "Product Description"}`;
+      
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+      
+      const aiResponse = await fetch(geminiUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{
+            parts: [
+              { text: prompt },
+              {
+                inline_data: {
+                  mime_type: blob.type || 'image/jpeg',
+                  data: base64Data
+                }
+              }
+            ]
+          }]
+        })
+      });
+      
+      const aiData = await aiResponse.json();
+      
+      if (aiData.error) throw new Error(aiData.error.message);
+      
+      const textOutput = aiData.candidates[0].content.parts[0].text;
+      
+      // Clean up markdown code blocks if present
+      const jsonString = textOutput.replace(/```json/g, '').replace(/```/g, '').trim();
+      
+      try {
+        const result = JSON.parse(jsonString);
+        setFormData(prev => ({
+          ...prev,
+          name: result.name || prev.name,
+          description: result.description || prev.description
+        }));
+      } catch (parseErr) {
+        console.error("Raw AI Output:", textOutput);
+        throw new Error("Failed to parse AI response.");
+      }
+    } catch (error) {
+      console.error("AI Generation failed:", error);
+      alert("AI Generation failed: " + error.message);
+    } finally {
+      setIsGenerating(false);
     }
   };
 
@@ -280,7 +353,14 @@ export default function Admin() {
                     {uploadingImage ? 'Uploading...' : 'Upload Image'}
                     <input type="file" accept="image/*" onChange={handleImageUpload} style={{display: 'none'}} />
                   </label>
-                  <input type="text" placeholder="Or paste image URL" value={formData.image_url} onChange={e => setFormData({...formData, image_url: e.target.value})} className="url-input" />
+                  <input type="text" placeholder="Or paste image URL" value={formData.image_url} onChange={e => setFormData({...formData, image_url: e.target.value})} className="url-input" style={{width: '100%', padding: '10px', border: '1px solid #ddd', borderRadius: '4px', boxSizing: 'border-box'}} />
+                  
+                  {formData.image_url && (
+                    <button type="button" onClick={handleGenerateAI} disabled={isGenerating} className="btn-ai-generate">
+                      {isGenerating ? <Loader className="spinner" size={16}/> : <Wand2 size={16}/>}
+                      {isGenerating ? 'Analyzing Image...' : 'Auto-Generate Details with AI'}
+                    </button>
+                  )}
                 </div>
               </div>
               <div className="modal-actions">
