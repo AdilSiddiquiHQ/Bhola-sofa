@@ -611,3 +611,47 @@
 .fab-phone { background-color: #c2593b; }
 .fab-whatsapp { background-color: #25D366; }
 .fab-chat { background-color: #4db8ff; }
+
+/* Mobile Responsive Fixes for Offers Strip */
+@media (max-width: 768px) {
+  .strip-container-custom {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .strip-middle-left-custom {
+    order: 1;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .strip-left-custom {
+    order: 2;
+    justify-content: center;
+  }
+
+  .strip-middle-right-custom {
+    order: 3;
+    text-align: center;
+    align-items: center;
+  }
+
+  .strip-right-custom {
+    order: 4;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .strip-divider-custom {
+    display: none;
+  }
+
+  .badge-custom {
+    align-self: center;
+  }
+}

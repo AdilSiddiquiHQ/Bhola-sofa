@@ -55,7 +55,7 @@
 .utility-left {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .pin-icon {
@@ -78,8 +78,14 @@
 }
 
 .utility-right {
-  display: flex;
-  align-items: center;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .utility-right {
+    display: flex;
+    align-items: center;
+  }
 }
 
 .utility-right a {

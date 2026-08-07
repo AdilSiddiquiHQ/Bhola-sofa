@@ -37,10 +37,18 @@ const Navbar = () => {
       {/* 1. Top Announcement Marquee Bar */}
       <div className="marquee-bar">
         <div className="marquee-content">
-          <span>5% Instant Discount with HDFC Bank Credit/Debit Card EMI | 2% Cashback on UPI Payments | Shop Now!</span>
-          <span>5% Instant Discount with HDFC Bank Credit/Debit Card EMI | 2% Cashback on UPI Payments | Shop Now!</span>
-          <span>5% Instant Discount with HDFC Bank Credit/Debit Card EMI | 2% Cashback on UPI Payments | Shop Now!</span>
-          <span>5% Instant Discount with HDFC Bank Credit/Debit Card EMI | 2% Cashback on UPI Payments | Shop Now!</span>
+          <span>⚡ 5% Instant Discount with HDFC Bank EMI</span>
+          <span>⚡ 2% Cashback on UPI Payments</span>
+          <span>⚡ Shop Now!</span>
+          <span>⚡ 5% Instant Discount with HDFC Bank EMI</span>
+          <span>⚡ 2% Cashback on UPI Payments</span>
+          <span>⚡ Shop Now!</span>
+          <span>⚡ 5% Instant Discount with HDFC Bank EMI</span>
+          <span>⚡ 2% Cashback on UPI Payments</span>
+          <span>⚡ Shop Now!</span>
+          <span>⚡ 5% Instant Discount with HDFC Bank EMI</span>
+          <span>⚡ 2% Cashback on UPI Payments</span>
+          <span>⚡ Shop Now!</span>
         </div>
       </div>
 
@@ -49,7 +57,7 @@ const Navbar = () => {
         <div className="container utility-container">
           <div className="utility-left">
             <MapPin size={14} className="pin-icon" /> 
-            <span className="deliver-text">Deliver to -</span> 
+            <span className="deliver-text">Deliver to</span> 
             {isEditingPincode ? (
               <form onSubmit={handlePincodeSubmit} className="pincode-form">
                 <input 
