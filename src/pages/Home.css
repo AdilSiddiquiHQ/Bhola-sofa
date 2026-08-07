@@ -1,0 +1,613 @@
+/* 1. Hero Slider */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #111;
+  aspect-ratio: 16 / 9;
+}
+
+.slides-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  height: 100%;
+}
+
+.hero-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  transition: background 0.3s;
+}
+
+.fab:hover {
+  background: #d48f57;
+}
+
+/* 7. SEO Description Block */
+.bg-white {
+  background-color: #ffffff;
+}
+
+.seo-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.seo-content {
+  text-align: center;
+}
+
+.seo-content h2 {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.seo-content p {
+  color: #555;
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* 8. FAQ Section */
+.faq-section {
+  background-color: #fcfcfc;
+}
+
+.faq-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.faq-item {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  background-color: white;
+  transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+  background-color: #f9f9f9;
+}
+
+.faq-question h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin: 0;
+}
+
+.faq-icon {
+  color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  background-color: #fcfcfc;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 300px;
+}
+
+.faq-answer-inner {
+  padding: 0 1.5rem 1.25rem 1.5rem;
+}
+
+.faq-answer-inner p {
+  color: #666;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.slider-btn.left { left: 20px; }
+.slider-btn.right { right: 20px; }
+
+.slider-dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.dot.active {
+  background: white;
+  width: 20px;
+  border-radius: 5px;
+}
+
+/* 2. Timer & Bank Offers */
+.offers-strip-custom {
+  background-color: #F9F6EE; /* Light cream/beige */
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  font-family: 'Inter', 'Roboto', 'Helvetica Neue', sans-serif;
+}
+
+.strip-container-custom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Left Section */
+.strip-left-custom {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.deal-title-custom {
+  font-size: 14px;
+  font-weight: 700;
+  color: #222222;
+  text-transform: uppercase;
+}
+
+.timer-boxes-custom {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.time-box-custom {
+  background: #FFFFFF;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+  width: 50px;
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.time-box-custom strong {
+  font-size: 22px;
+  font-weight: 700;
+  color: #111111;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+.time-box-custom span {
+  font-size: 11px;
+  color: #666666;
+}
+
+/* Divider */
+.strip-divider-custom {
+  width: 1px;
+  height: 50px;
+  background-color: #DDD3C5;
+  margin: 0 0.5rem;
+}
+
+/* Middle-Left */
+.strip-middle-left-custom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.badge-custom {
+  background-color: #8B1E1B;
+  color: white;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-bottom: 4px;
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.discount-text-custom {
+  color: #B89028;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+/* Middle-Right */
+.strip-middle-right-custom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.4;
+}
+
+.discount-line1 {
+  font-weight: 700;
+  color: #000000;
+  font-size: 14px;
+}
+
+.discount-line2 {
+  color: #333333;
+  font-size: 12px;
+}
+
+.discount-line3 {
+  color: #333333;
+  font-size: 12px;
+}
+
+/* Right Section */
+.strip-right-custom {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.bank-logos-container-custom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bank-logo-svg {
+  height: 20px;
+  width: auto;
+}
+
+.more-banks-custom {
+  color: #444444;
+  font-size: 13px;
+  margin-left: 5px;
+}
+
+.tc-text-custom {
+  font-size: 11px;
+  color: #555555;
+  text-align: right;
+}
+
+/* 3. Features Strip */
+.features-strip {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 2.5rem 0;
+}
+
+.features-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.feature-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  flex: 1;
+  min-width: 150px;
+}
+
+.feature-img-icon {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+}
+
+.feature-item span {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* 4. Promo Banner */
+.promo-banner {
+  position: relative;
+  width: 100%;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.promo-banner-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* 5. Product Grid (Best Sellers) */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.product-card {
+  background: white;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: var(--transition-smooth);
+  border: 1px solid var(--border-color);
+}
+
+.product-card:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.badge-discount {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #c2593b;
+  color: white;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 4px;
+  z-index: 2;
+}
+
+.wishlist-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: #c2593b;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.product-img-wrap {
+  height: 220px;
+  background: #f0f0f0;
+}
+
+.product-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-details {
+  padding: 1.5rem;
+}
+
+.badge-bestseller {
+  background: #a32a29;
+  color: white;
+  padding: 2px 6px;
+  font-size: 0.65rem;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.product-title {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  height: 40px;
+  overflow: hidden;
+}
+
+.product-pricing {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.price-new {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text-dark);
+}
+
+.price-old {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.85rem;
+}
+
+/* Additional Latest Catalogue Styles */
+.bg-light-accent {
+  background-color: #faf9f7;
+}
+
+.section-header-custom {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.section-subtitle {
+  color: #666;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+}
+
+.view-more-container {
+  margin-top: 3rem;
+}
+
+.btn-view-more {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  padding: 12px 32px;
+  font-weight: 600;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn-view-more:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* 7. Testimonials */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.video-thumbnail {
+  position: relative;
+  height: 200px;
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,0.8);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+}
+
+.testimonial-content {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.testimonial-content p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin-bottom: 1rem;
+}
+
+.testimonial-content h4 {
+  margin-bottom: 0.2rem;
+}
+
+.testimonial-content span {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+/* Floating Action Buttons */
+.fab-container {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.fab {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+}
+
+.fab-phone { background-color: #c2593b; }
+.fab-whatsapp { background-color: #25D366; }
+.fab-chat { background-color: #4db8ff; }

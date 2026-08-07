@@ -1,0 +1,118 @@
+.contact-page {
+  padding-top: 80px;
+}
+
+.contact-header {
+  background-color: var(--text-dark);
+  color: var(--text-light);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: 3rem;
+  color: var(--text-light);
+  margin-bottom: 0.5rem;
+}
+
+.contact-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+}
+
+@media (min-width: 992px) {
+  .contact-container {
+    grid-template-columns: 1fr 1.5fr;
+  }
+}
+
+.contact-info {
+  padding-right: 2rem;
+}
+
+.info-item {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.info-icon {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(193, 154, 107, 0.15); /* accent-color with opacity */
+  color: var(--accent-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-text h3 {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+}
+
+.info-text p {
+  color: #555;
+  line-height: 1.5;
+}
+
+.contact-form-container {
+  background-color: var(--surface);
+  padding: 3rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(140, 122, 107, 0.2); /* secondary-color */
+  border-radius: 8px;
+  background-color: rgba(249, 247, 241, 0.5); /* background-light */
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  transition: var(--transition-smooth);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  background-color: var(--surface);
+  box-shadow: 0 0 0 3px rgba(193, 154, 107, 0.1);
+}
+
+.submit-btn {
+  margin-top: 1rem;
+  width: 100%;
+}
