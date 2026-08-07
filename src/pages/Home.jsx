@@ -218,8 +218,8 @@ const Home = () => {
       <section className="features-strip">
         <div className="container features-container">
           <div className="feature-item">
-            <img src="/feature-2.png" alt="10M+ customer" className="feature-img-icon" />
-            <span>10M+ customer</span>
+            <img src="/feature-2.png" alt="Satisfied Customers" className="feature-img-icon" />
+            <span>Satisfied Customers</span>
           </div>
           <div className="feature-item">
             <img src="/feature-international.png" alt="International Furniture" className="feature-img-icon" />
