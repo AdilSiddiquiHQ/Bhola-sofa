@@ -83,13 +83,6 @@ export default function ProductPage() {
               <div className="feature-row"><Check size={18} className="text-green"/> Customization Available</div>
             </div>
 
-            <div className="product-actions">
-              <a href={`https://wa.me/919204775927?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="btn-buy-now">
-                <MessageCircle size={20} /> Buy via WhatsApp
-              </a>
-              <p className="action-hint">Clicking this will open WhatsApp to confirm your order.</p>
-            </div>
-
             <div className="product-trust-badges">
               <div className="trust-badge">
                 <Truck size={24} />
@@ -99,6 +92,13 @@ export default function ProductPage() {
                 <ShieldCheck size={24} />
                 <span>Secure Payment on Delivery</span>
               </div>
+            </div>
+
+            <div className="product-page-actions" style={{ marginTop: '2rem' }}>
+              <a href={`https://wa.me/919204775927?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="btn-buy-now">
+                <MessageCircle size={20} /> Buy via WhatsApp
+              </a>
+              <p className="action-hint">Clicking this will open WhatsApp to confirm your order.</p>
             </div>
           </div>
         </div>
