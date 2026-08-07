@@ -39,7 +39,8 @@ export default function ProductPage() {
     return <div className="product-not-found">Product not found. <Link to="/catalog">Go back to catalog</Link></div>;
   }
 
-  const whatsappMessage = encodeURIComponent(`Hi, I'm interested in the ${product.name} (₹${product.discount_price || product.price}). Can you provide more details?`);
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+  const whatsappMessage = encodeURIComponent(`I'm interested in ${product.name} (${currentUrl})`);
 
   return (
     <div className="product-page-container">
