@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import ChatAssistant from '../components/ChatAssistant';
 import { blogPosts } from '../data/blogPosts';
+import { useWishlist } from '../context/WishlistContext';
 import './Home.css';
 
 const WhatsAppIcon = () => (
@@ -18,6 +19,7 @@ const Home = () => {
   const [activeFaq, setActiveFaq] = useState(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [products, setProducts] = useState([]);
+  const { toggleWishlist, isInWishlist } = useWishlist();
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -132,6 +134,16 @@ const Home = () => {
     const slideInterval = setInterval(nextSlide, 5000);
     return () => clearInterval(slideInterval);
   }, []);
+
+  const getBadgeText = (product, index) => {
+    // 1. If it's one of the first two recently added products
+    if (index < 2) return "New Arrival";
+    // 2. If it has a massive discount (>30%)
+    if (product.discount_price && (product.price - product.discount_price) / product.price > 0.3) return "Mega Deal";
+    // 3. Fallback to category-specific bestseller or trending
+    if (index % 2 === 0) return `${product.category || 'Store'} Bestseller`;
+    return "Trending";
+  };
 
   return (
     <div className="home-page">
@@ -260,7 +272,7 @@ const Home = () => {
             {products.length === 0 ? (
               <div style={{ textAlign: 'center', gridColumn: '1 / -1', padding: '3rem' }}>No products found.</div>
             ) : (
-              products.map((product) => (
+              products.map((product, index) => (
                 <div key={product.id} className="product-card">
                   <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                     {product.discount_price && (
@@ -268,12 +280,21 @@ const Home = () => {
                         {Math.round(((product.price - product.discount_price) / product.price) * 100)}% off
                       </div>
                     )}
-                    <button className="wishlist-btn" onClick={(e) => e.preventDefault()}><Heart size={18} /></button>
+                    <button 
+                      className="wishlist-btn" 
+                      onClick={(e) => { e.preventDefault(); toggleWishlist(product); }}
+                    >
+                      <Heart 
+                        size={18} 
+                        fill={isInWishlist(product.id) ? "#e74c3c" : "none"} 
+                        color={isInWishlist(product.id) ? "#e74c3c" : "currentColor"} 
+                      />
+                    </button>
                     <div className="product-img-wrap">
                       <img src={product.image_url || '/placeholder.jpg'} alt={product.name} />
                     </div>
                     <div className="product-details">
-                      <span className="badge-bestseller">Trending</span>
+                      <span className="badge-bestseller">{getBadgeText(product, index)}</span>
                       <h3 className="product-title">{product.name}</h3>
                       <div className="product-pricing">
                         {product.discount_price ? (
