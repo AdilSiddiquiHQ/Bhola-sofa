@@ -55,8 +55,10 @@
 /* Dashboard Styles */
 .admin-dashboard {
   padding: 2rem;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .admin-header {
@@ -108,6 +110,7 @@
 .admin-table th, .admin-table td {
   padding: 1rem;
   border-bottom: 1px solid #eee;
+  word-break: break-word;
 }
 
 .admin-table th {
@@ -153,8 +156,11 @@
   background: rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   z-index: 2000;
+  overflow-y: auto;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
 }
 
 .admin-modal {
@@ -163,8 +169,7 @@
   border-radius: 8px;
   width: 100%;
   max-width: 500px;
-  max-height: 90vh;
-  overflow-y: auto;
+  margin: auto;
 }
 
 .admin-modal h2 {
@@ -304,8 +309,8 @@
   }
   
   .admin-modal {
-    padding: 1rem;
-    margin: 1rem;
+    padding: 1.5rem;
+    margin: auto;
   }
   
   .admin-actions button {
