@@ -93,7 +93,7 @@ export default function ProductPage() {
             <div className="product-trust-badges">
               <div className="trust-badge">
                 <Truck size={24} />
-                <span>Free Delivery in Jugsalai</span>
+                <span>Free Local Delivery</span>
               </div>
               <div className="trust-badge">
                 <ShieldCheck size={24} />
