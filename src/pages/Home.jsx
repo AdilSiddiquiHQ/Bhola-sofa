@@ -245,11 +245,11 @@ const Home = () => {
           </div>
           <div className="feature-item">
             <img src="/feature-1.png" alt="100% Secure Payment" className="feature-img-icon" />
-            <span>Made in Jamshedpur</span>
+            <span>100% Secure Payment</span>
           </div>
           <div className="feature-item">
             <img src="/feature-5.png" alt="No Cost EMI" className="feature-img-icon" />
-            <span>Local Repair Warranty</span>
+            <span>No Cost EMI</span>
           </div>
         </div>
       </section>
