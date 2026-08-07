@@ -137,7 +137,7 @@ export default function Admin() {
       Generate a catchy, premium Title and a short, beautiful Description for a furniture store. 
       Return ONLY a JSON object in this exact format without markdown: {"name": "Product Name", "description": "Product Description"}`;
       
-      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
+      const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${apiKey}`;
       
       const aiResponse = await fetch(geminiUrl, {
         method: 'POST',
