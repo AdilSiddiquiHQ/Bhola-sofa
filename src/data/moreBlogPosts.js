@@ -9,7 +9,7 @@ export const moreBlogPosts = [
     keywords: 'office furniture Jamshedpur, wholesale office chairs Jharkhand, commercial furniture Adityapur',
     author: 'Bhola Sofa B2B Team',
     published_at: '2026-08-06T10:00:00Z',
-    cover_image: '/hero.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # Equipping Your Jamshedpur Office on a Budget
 
@@ -67,7 +67,7 @@ Visit our Jugsalai showroom to see our latest dining set designs.
     keywords: 'wedding furniture package Jamshedpur, dahej furniture Jharkhand, wholesale bedroom set Jugsalai',
     author: 'Mr. Anwar',
     published_at: '2026-08-08T10:00:00Z',
-    cover_image: '/banner2.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # Stress-Free Wedding Furniture Shopping
 
@@ -100,7 +100,7 @@ Contact us on WhatsApp today to get a digital catalog of our wedding packages!
     keywords: 'leatherette vs fabric sofa Jamshedpur, best sofa fabric Jharkhand, easy clean sofa Jugsalai',
     author: 'Bhola Sofa Manufacturing Team',
     published_at: '2026-08-09T10:00:00Z',
-    cover_image: '/banner3.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1512212621149-107ffe572d2f?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # Choosing the Right Skin for Your Sofa
 
@@ -136,7 +136,7 @@ Visit our Jugsalai workshop to touch and test these magical fabrics yourself.
     keywords: 'sofa repair Jamshedpur, sofa upholstery Sakchi, doorstep sofa repair Mango',
     author: 'Mr. Anwar',
     published_at: '2026-08-10T10:00:00Z',
-    cover_image: '/product1.jpg',
+    cover_image: '/banner2.jpg',
     content_markdown: `
 # Don't Throw Away a Good Frame!
 
@@ -165,7 +165,7 @@ Need an assessment? Send a photo of your old sofa to our WhatsApp number, and ou
     keywords: 'Tata quarters furniture Jamshedpur, custom sofa for Kadma quarters, movable furniture Bistupur',
     author: 'Bhola Sofa Design Team',
     published_at: '2026-08-11T10:00:00Z',
-    cover_image: '/monsoon-banner-bg.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1554295405-abb8fd54f153?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # Furnishing Your Company Quarter
 
@@ -199,7 +199,7 @@ Visit our Jugsalai workshop and show us your quarter's floor plan!
     keywords: 'orthopedic mattress Jamshedpur, best mattress for back pain, bed shop Jugsalai',
     author: 'Mr. Anwar',
     published_at: '2026-08-12T10:00:00Z',
-    cover_image: '/hero.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # The Secret to Pain-Free Sleep
 
@@ -226,7 +226,7 @@ While we specialize in manufacturing the wooden frames, our showroom in Jugsalai
     keywords: 'wooden almirah Jamshedpur, custom wardrobe Jugsalai, steel almirah vs wooden wardrobe',
     author: 'Bhola Sofa Design Team',
     published_at: '2026-08-13T10:00:00Z',
-    cover_image: '/banner1.jpg',
+    cover_image: '/banner3.jpg',
     content_markdown: `
 # The Great Storage Debate
 
@@ -256,7 +256,7 @@ Worried about termites? We use chemically treated, termite-proof commercial ply 
     keywords: 'TV unit design Jamshedpur, modern TV stand, custom floating TV cabinet Jugsalai',
     author: 'Bhola Sofa Manufacturing Team',
     published_at: '2026-08-14T10:00:00Z',
-    cover_image: '/banner2.jpg',
+    cover_image: '/product1.jpg',
     content_markdown: `
 # The Focal Point of Your Living Room
 
@@ -282,7 +282,7 @@ Bring us a photo from Pinterest, and our Jugsalai carpenters will build an exact
     keywords: 'second hand furniture Jamshedpur, cheap furniture market Jugsalai, buy sell used sofa',
     author: 'Mr. Anwar',
     published_at: '2026-08-15T10:00:00Z',
-    cover_image: '/banner3.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1551298370-9d3d53740c72?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # The Trap of "Too Good to Be True" Deals
 
@@ -315,7 +315,7 @@ Don't inherit someone else's problems. Message us on WhatsApp for a budget-frien
     keywords: 'cafe furniture maker Jamshedpur, restaurant tables wholesale Jharkhand, commercial sofa manufacturing Adityapur',
     author: 'Bhola Sofa B2B Team',
     published_at: '2026-08-16T10:00:00Z',
-    cover_image: '/product1.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # Equipping Jamshedpur's Thriving Food Scene
 
@@ -347,7 +347,7 @@ Are you an architect, interior designer, or restaurant owner? Contact our wholes
     keywords: 'bunk bed Jamshedpur, kids bedroom furniture, double decker bed Jugsalai',
     author: 'Bhola Sofa Design Team',
     published_at: '2026-08-17T10:00:00Z',
-    cover_image: '/monsoon-banner-bg.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1505693314120-0d443867891c?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # Maximizing Your Child's Space
 
@@ -376,7 +376,7 @@ Give your kids the room to play. WhatsApp us your room dimensions for a custom k
     keywords: 'interior design Jamshedpur, luxury furniture Bistupur, living room trends CH Area',
     author: 'Bhola Sofa Design Team',
     published_at: '2026-08-18T10:00:00Z',
-    cover_image: '/hero.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # Elevating Steel City Aesthetics
 
@@ -406,7 +406,7 @@ Shiny velvets are being replaced by highly textured fabrics like Bouclé (a nubb
     keywords: 'teak wood bed Jamshedpur, MDF vs solid wood furniture, buy bed Jugsalai',
     author: 'Mr. Anwar',
     published_at: '2026-08-19T10:00:00Z',
-    cover_image: '/banner1.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # The Bedroom Investment
 
@@ -437,7 +437,7 @@ Stop wasting money replacing cheap beds every 4 years. Invest in a solid wood fr
     keywords: 'center table Jamshedpur, wooden coffee table, living room furniture Jugsalai',
     author: 'Bhola Sofa Design Team',
     published_at: '2026-08-20T10:00:00Z',
-    cover_image: '/banner2.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # The Anchor of the Living Room
 

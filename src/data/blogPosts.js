@@ -11,7 +11,7 @@ const initialBlogPosts = [
     keywords: 'sofa manufacturer Jugsalai Jamshedpur, wholesale furniture Jamshedpur, buy sofa direct from factory Jamshedpur',
     author: 'Mr. Anwar',
     published_at: '2026-08-01T10:00:00Z',
-    cover_image: '/hero.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # The Hidden Cost of Retail Furniture in Jamshedpur
 
@@ -56,7 +56,7 @@ Founded in 1978 by MD Aslam ("Bhola"), our workshop has served three generations
     keywords: 'termite proof sofa Jamshedpur, best wooden sofa for Jharkhand monsoon, seasoned teak wood sofa Jugsalai',
     author: 'Bhola Sofa Team',
     published_at: '2026-08-02T10:00:00Z',
-    cover_image: '/banner1.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # Protecting Your Furniture from Jharkhand's Humidity
 
@@ -99,7 +99,7 @@ Is dampness ruining your old sofa? Visit Bhola Sofa in Jugsalai to inspect our w
     keywords: 'L shape sofa Jamshedpur, custom sofa for flat Bistupur, sectional sofa makers Jugsalai, small living room sofa designs Jamshedpur',
     author: 'Bhola Sofa Design Team',
     published_at: '2026-08-03T10:00:00Z',
-    cover_image: '/banner2.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # Navigating the Modern Apartment Layout
 
@@ -135,7 +135,7 @@ Don't settle for a sofa that *almost* fits. Send your floor plan or room dimensi
     keywords: 'Bhola Sofa Jugsalai history, oldest sofa maker Jamshedpur, best custom sofa maker Jamshedpur',
     author: 'Mr. Anwar',
     published_at: '2026-08-04T10:00:00Z',
-    cover_image: '/banner3.jpg',
+    cover_image: '/hero.jpg',
     content_markdown: `
 # Crafting Comfort in Steel City Since 1978
 
@@ -174,7 +174,7 @@ Become part of the 45-year legacy. Visit Islam Nagar, Jugsalai to experience aut
     keywords: 'how to check sofa quality Jamshedpur, ready made vs custom sofa Jamshedpur, best sofa quality Jugsalai, furniture buying guide Jamshedpur',
     author: 'Bhola Sofa Manufacturing Team',
     published_at: '2026-08-05T10:00:00Z',
-    cover_image: '/product1.jpg',
+    cover_image: 'https://images.unsplash.com/photo-1550254478-ead40cc54513?auto=format&fit=crop&q=80&w=1000',
     content_markdown: `
 # The Showroom Illusion
 
