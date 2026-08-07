@@ -10,11 +10,10 @@ const Navbar = () => {
   const { cartItems } = useCart();
   const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [pincode, setPincode] = useState('831006');
-  const [isEditingPincode, setIsEditingPincode] = useState(false);
-  const [tempPincode, setTempPincode] = useState('831006');
-  const [showModal, setShowModal] = useState(false);
-  const [email, setEmail] = useState('');
+  const [pincode, setPincode] = useState(() => localStorage.getItem('bhola_pincode') || '831006');
+  const [showPincodeModal, setShowPincodeModal] = useState(false);
+  const [tempPincode, setTempPincode] = useState(pincode);
+  const [deliveryStatus, setDeliveryStatus] = useState(null); // 'free', 'paid', 'outside'
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearchSubmit = (e) => {
@@ -27,21 +26,21 @@ const Navbar = () => {
 
   const handlePincodeSubmit = (e) => {
     e.preventDefault();
+    if (!tempPincode || tempPincode.length !== 6) return;
+
     if (tempPincode.match(/^83[12]\d{3}$/)) {
-      setPincode(tempPincode);
-      setIsEditingPincode(false);
-      setShowModal(false);
+      setDeliveryStatus('free');
+    } else if (tempPincode.match(/^[8][123]\d{4}$/)) {
+      setDeliveryStatus('paid');
     } else {
-      setShowModal(true);
+      setDeliveryStatus('outside');
     }
   };
 
-  const handleEmailSubmit = (e) => {
-    e.preventDefault();
-    alert(`Thank you! We will notify ${email} when we deliver to ${tempPincode}.`);
-    setShowModal(false);
-    setIsEditingPincode(false);
-    setEmail('');
+  const confirmPincode = () => {
+    setPincode(tempPincode);
+    localStorage.setItem('bhola_pincode', tempPincode);
+    setShowPincodeModal(false);
   };
 
   return (
@@ -71,28 +70,18 @@ const Navbar = () => {
             <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
               <MapPin size={14} className="pin-icon" /> 
               <span className="deliver-text">Deliver to</span> 
-              {isEditingPincode ? (
-                <form onSubmit={handlePincodeSubmit} className="pincode-form">
-                  <input 
-                    type="text" 
-                    value={tempPincode} 
-                    onChange={(e) => setTempPincode(e.target.value)}
-                    maxLength={6}
-                    placeholder="Enter Pincode"
-                    autoFocus
-                  />
-                  <button type="submit">Check</button>
-                  <button type="button" onClick={() => setIsEditingPincode(false)}><X size={12} /></button>
-                </form>
-              ) : (
-                <>
-                  <span className="pincode-text">{pincode}</span>
-                  <Edit2 size={12} className="edit-icon" onClick={() => {
-                    setTempPincode(pincode);
-                    setIsEditingPincode(true);
-                  }} />
-                </>
-              )}
+              <div 
+                className="pincode-display" 
+                onClick={() => {
+                  setTempPincode(pincode);
+                  setDeliveryStatus(null);
+                  setShowPincodeModal(true);
+                }}
+                style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', gap: '4px' }}
+              >
+                <span className="pincode-text" style={{ fontWeight: '600', textDecoration: 'underline' }}>{pincode}</span>
+                <ChevronDown size={14} />
+              </div>
             </div>
             
             {/* Mobile Only Cart and Wishlist next to pincode */}
@@ -191,24 +180,56 @@ const Navbar = () => {
         </Link>
       </div>
 
-      {/* Out of Area Modal */}
-      {showModal && (
+      {/* Dynamic Pincode Modal */}
+      {showPincodeModal && (
         <div className="modal-overlay">
-          <div className="modal-content">
-            <button className="modal-close" onClick={() => setShowModal(false)}><X size={20} /></button>
-            <h3>Coming Soon!</h3>
-            <p>We are currently not delivering to <strong>{tempPincode}</strong> (Outside our 20km Jamshedpur radius).</p>
-            <p>Enter your email below and we'll notify you when we expand to your area.</p>
-            <form onSubmit={handleEmailSubmit} className="modal-form">
+          <div className="modal-content" style={{ maxWidth: '400px', textAlign: 'center' }}>
+            <button className="modal-close" onClick={() => setShowPincodeModal(false)}><X size={20} /></button>
+            <h3 style={{ marginBottom: '15px' }}>Check Delivery Availability</h3>
+            <form onSubmit={handlePincodeSubmit} className="modal-form" style={{ display: 'flex', gap: '10px', marginBottom: '20px' }}>
               <input 
-                type="email" 
-                required 
-                placeholder="Enter your email address" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text" 
+                maxLength="6"
+                placeholder="Enter 6-digit Pincode" 
+                value={tempPincode}
+                onChange={(e) => {
+                  setTempPincode(e.target.value.replace(/\\D/g, ''));
+                  setDeliveryStatus(null);
+                }}
+                style={{ flex: 1, padding: '10px', border: '1px solid #ddd', borderRadius: '4px' }}
               />
-              <button type="submit">Notify Me</button>
+              <button type="submit" style={{ padding: '10px 20px', background: '#333', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Check</button>
             </form>
+
+            {deliveryStatus === 'free' && (
+              <div style={{ padding: '15px', background: '#e8f5e9', color: '#2e7d32', borderRadius: '8px', marginBottom: '20px' }}>
+                <strong style={{ display: 'block', marginBottom: '5px' }}>✅ Free Delivery Available!</strong>
+                Your pincode is within our free delivery zone.
+              </div>
+            )}
+
+            {deliveryStatus === 'paid' && (
+              <div style={{ padding: '15px', background: '#fff3e0', color: '#e65100', borderRadius: '8px', marginBottom: '20px' }}>
+                <strong style={{ display: 'block', marginBottom: '5px' }}>⚠️ Standard Delivery Available</strong>
+                We deliver to your area in Jharkhand! Standard freight charges will apply based on distance.
+              </div>
+            )}
+
+            {deliveryStatus === 'outside' && (
+              <div style={{ padding: '15px', background: '#ffebee', color: '#c62828', borderRadius: '8px', marginBottom: '20px' }}>
+                <strong style={{ display: 'block', marginBottom: '5px' }}>❌ Out of Service Area</strong>
+                Sorry, our factory currently only services the state of Jharkhand.
+              </div>
+            )}
+
+            {(deliveryStatus === 'free' || deliveryStatus === 'paid') && (
+              <button 
+                onClick={confirmPincode}
+                style={{ width: '100%', padding: '12px', background: '#c19a6b', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' }}
+              >
+                Confirm Pincode
+              </button>
+            )}
           </div>
         </div>
       )}

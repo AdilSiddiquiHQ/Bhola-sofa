@@ -25,8 +25,17 @@ const Cart = () => {
       message += `${index + 1}. ${item.name} - ₹${formatPrice(price)}\n`;
     });
     
+    const pincode = localStorage.getItem('bhola_pincode') || '831006';
+    const isFreeZone = !!pincode.match(/^83[12]\d{3}$/);
+
     message += `\n*Sub-total: ₹${formatPrice(calculateTotal())}*`;
-    message += "\n\nPlease let me know the next steps for delivery and payment.";
+    message += `\n*Delivery Pincode: ${pincode}*`;
+    
+    if (isFreeZone) {
+      message += "\n\nPlease let me know the next steps for payment (Free Delivery Area).";
+    } else {
+      message += "\n\nCan you please tell me the exact freight/transport charge to my pincode?";
+    }
     
     const encodedMessage = encodeURIComponent(message);
     window.open(`https://wa.me/919204775927?text=${encodedMessage}`, '_blank', 'noopener,noreferrer');
@@ -74,7 +83,11 @@ const Cart = () => {
               </div>
               <div className="summary-row">
                 <span>Delivery</span>
-                <span className="text-green">Free in Jugsalai</span>
+                {localStorage.getItem('bhola_pincode') && !localStorage.getItem('bhola_pincode').match(/^83[12]\d{3}$/) ? (
+                  <span className="text-orange" style={{ color: '#e65100', fontSize: '0.9rem' }}>Freight applies at checkout</span>
+                ) : (
+                  <span className="text-green" style={{ color: '#2e7d32' }}>Free (Local)</span>
+                )}
               </div>
               <div className="summary-divider"></div>
               <div className="summary-row total">
