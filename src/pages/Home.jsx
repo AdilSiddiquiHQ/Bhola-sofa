@@ -83,10 +83,10 @@ const Home = () => {
   };
 
   const faqs = [
-    { question: "Do you offer free delivery?", answer: "Yes, we offer free delivery across all major cities for orders above ₹5,000. Our logistics partners ensure safe and timely transit of your premium furniture." },
-    { question: "What is your return policy?", answer: "We provide a 7-day hassle-free return policy against any manufacturing defects or damages incurred during transit. Your satisfaction is our priority." },
-    { question: "Can I customize the furniture dimensions?", answer: "Our international collection is precisely engineered for optimal ergonomics and structural integrity, so we currently do not offer bespoke dimensional customization." },
-    { question: "How long does shipping typically take?", answer: "Most standard orders are processed and delivered within 5-7 business days depending on your specific pin code and the item's availability." }
+    { question: "Do you offer free delivery?", answer: "Yes, we offer free delivery across Jamshedpur and surrounding areas (Zone 1). For other cities in Jharkhand like Ranchi or Dhanbad (Zone 2), standard freight charges apply. You can check your pincode at the top of the website." },
+    { question: "What is your return policy?", answer: "We provide a 7-day hassle-free return policy against any manufacturing defects or damages incurred during transit. Since we manufacture locally, repairs are handled immediately." },
+    { question: "Can I customize the furniture dimensions?", answer: "Absolutely! Because we manufacture everything in our Jugsalai workshop, we can customize the dimensions, fabric, and wood polish of almost any sofa, bed, or dining table to fit your home perfectly." },
+    { question: "How long does manufacturing and shipping take?", answer: "Most standard orders are delivered within 5-7 business days. Custom-built furniture may take 10-14 days depending on the complexity of the design." }
   ];
 
   const testimonialsData = [
@@ -233,23 +233,23 @@ const Home = () => {
         <div className="container features-container">
           <div className="feature-item">
             <img src="/feature-2.png" alt="Satisfied Customers" className="feature-img-icon" />
-            <span>Satisfied Customers</span>
+            <span>45+ Years Legacy</span>
           </div>
           <div className="feature-item">
-            <img src="/feature-international.png" alt="International Furniture" className="feature-img-icon" />
-            <span>International Furniture</span>
+            <img src="/feature-international.png" alt="Custom Furniture" className="feature-img-icon" />
+            <span>100% Customization</span>
           </div>
           <div className="feature-item">
             <img src="/feature-price-new.png" alt="Unbeatable Price" className="feature-img-icon" />
-            <span>Unbeatable Price</span>
+            <span>Factory Direct Prices</span>
           </div>
           <div className="feature-item">
             <img src="/feature-1.png" alt="100% Secure Payment" className="feature-img-icon" />
-            <span>100% Secure Payment</span>
+            <span>Made in Jamshedpur</span>
           </div>
           <div className="feature-item">
             <img src="/feature-5.png" alt="No Cost EMI" className="feature-img-icon" />
-            <span>No Cost EMI</span>
+            <span>Local Repair Warranty</span>
           </div>
         </div>
       </section>
@@ -350,13 +350,12 @@ const Home = () => {
       <section className="seo-section section bg-white">
         <div className="container seo-container">
           <div className="seo-content">
-            <h2>Experience Premium International Furniture at Unbeatable Prices</h2>
+            <h2>Experience Premium Custom Furniture Direct from the Factory</h2>
             <p>
-              Transform your living spaces with Bhola Sofa's exclusive collection of modern, classic, and contemporary furniture. 
-              Sourced globally, our meticulously crafted pieces offer a perfect blend of unparalleled comfort and top-tier aesthetic appeal. 
-              Whether you are looking to revitalize your bedroom, upgrade your living room seating, or create a productive home office, 
-              we provide high-quality solutions that fit every style and budget. With 100% secure payments, no-cost EMI options, 
-              and a seamless delivery network covering over 10 million happy customers, Bhola Sofa stands as your ultimate destination for home decor.
+              Transform your living spaces with Bhola Sofa, Jamshedpur's most trusted furniture manufacturer since 1978. 
+              Because we build everything in our Jugsalai workshop, you get 100% customization—choose your exact dimensions, fabrics, and wood finish. 
+              By cutting out the retail middlemen, we provide high-quality solid wood sofas, dining tables, and beds at unbeatable factory-direct wholesale prices. 
+              With free local delivery in Jamshedpur and standard freight delivery across all of Jharkhand, Bhola Sofa stands as your ultimate destination for home decor.
             </p>
           </div>
         </div>
