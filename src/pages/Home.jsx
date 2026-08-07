@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Phone, Bot, Heart, Star, Play, Plus, Minus } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { supabase } from '../supabaseClient';
 import ChatAssistant from '../components/ChatAssistant';
 import './Home.css';
 
@@ -15,6 +16,24 @@ const Home = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const [activeFaq, setActiveFaq] = useState(null);
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('products')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(8);
+        if (error) throw error;
+        setProducts(data || []);
+      } catch (error) {
+        console.error('Error fetching products:', error.message);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   useEffect(() => {
     // 1 & 2. Homepage SEO Title, Meta, and JSON-LD
@@ -236,23 +255,39 @@ const Home = () => {
             <p className="section-subtitle">Discover our newest arrivals, top-rated best sellers, and exclusive limited time deals all in one place.</p>
           </div>
           <div className="product-grid">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-              <div key={item} className="product-card">
-                <div className="badge-discount">55% off</div>
-                <button className="wishlist-btn"><Heart size={18} /></button>
-                <div className="product-img-wrap">
-                  <img src="/product1.jpg" alt="Product" />
+            {products.length === 0 ? (
+              <div style={{ textAlign: 'center', gridColumn: '1 / -1', padding: '3rem' }}>No products found.</div>
+            ) : (
+              products.map((product) => (
+                <div key={product.id} className="product-card">
+                  <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                    {product.discount_price && (
+                      <div className="badge-discount">
+                        {Math.round(((product.price - product.discount_price) / product.price) * 100)}% off
+                      </div>
+                    )}
+                    <button className="wishlist-btn" onClick={(e) => e.preventDefault()}><Heart size={18} /></button>
+                    <div className="product-img-wrap">
+                      <img src={product.image_url || '/placeholder.jpg'} alt={product.name} />
+                    </div>
+                    <div className="product-details">
+                      <span className="badge-bestseller">Trending</span>
+                      <h3 className="product-title">{product.name}</h3>
+                      <div className="product-pricing">
+                        {product.discount_price ? (
+                          <>
+                            <span className="price-new">₹{product.discount_price}</span>
+                            <span className="price-old">₹{product.price}</span>
+                          </>
+                        ) : (
+                          <span className="price-new">₹{product.price}</span>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
                 </div>
-                <div className="product-details">
-                  <span className="badge-bestseller">Trending</span>
-                  <h3 className="product-title">Bhola Sofa Premium Wicker Set</h3>
-                  <div className="product-pricing">
-                    <span className="price-new">₹36,000.00</span>
-                    <span className="price-old">₹68,600.00</span>
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
           <div className="view-more-container text-center mt-40">
             <Link to="/catalog" className="btn-view-more">View All Products</Link>

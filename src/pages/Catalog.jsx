@@ -1,53 +1,34 @@
-import React from 'react';
-import { ShoppingCart, Heart } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ShoppingCart, Heart, Loader } from 'lucide-react';
 import './Catalog.css';
 
-const products = [
-  {
-    id: 1,
-    name: 'The Signature Armchair',
-    price: '$450',
-    category: 'Armchairs',
-    image: '/product1.jpg'
-  },
-  {
-    id: 2,
-    name: 'Classic Velvet Sofa',
-    price: '$899',
-    category: 'Sofas',
-    image: '/hero.jpg'
-  },
-  {
-    id: 3,
-    name: 'Minimalist Lounge Chair',
-    price: '$350',
-    category: 'Chairs',
-    image: '/product1.jpg'
-  },
-  {
-    id: 4,
-    name: 'Modern Earth Sectional',
-    price: '$1200',
-    category: 'Sofas',
-    image: '/hero.jpg'
-  },
-  {
-    id: 5,
-    name: 'Oak Finish Side Table',
-    price: '$150',
-    category: 'Tables',
-    image: '/product1.jpg'
-  },
-  {
-    id: 6,
-    name: 'Luxury Recliner',
-    price: '$650',
-    category: 'Armchairs',
-    image: '/product1.jpg'
-  }
-];
+import { supabase } from '../supabaseClient';
+import { Link } from 'react-router-dom';
 
 const Catalog = () => {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .order('created_at', { ascending: false });
+      
+      if (error) throw error;
+      setProducts(data || []);
+    } catch (error) {
+      console.error('Error fetching products:', error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="catalog-page">
       <div className="catalog-header">
@@ -66,22 +47,39 @@ const Catalog = () => {
         </div>
 
         <div className="product-grid">
-          {products.map((product) => (
-            <div key={product.id} className="product-card">
-              <div className="product-image-container">
-                <img src={product.image} alt={product.name} className="product-image" />
-                <div className="product-actions">
-                  <button className="icon-btn"><Heart size={20} /></button>
-                  <button className="icon-btn"><ShoppingCart size={20} /></button>
-                </div>
+          {loading ? (
+            <div style={{ textAlign: 'center', gridColumn: '1 / -1', padding: '5rem' }}><Loader className="spinner" /> Loading products...</div>
+          ) : products.length === 0 ? (
+            <div style={{ textAlign: 'center', gridColumn: '1 / -1', padding: '5rem' }}>No products found.</div>
+          ) : (
+            products.map((product) => (
+              <div key={product.id} className="product-card">
+                <Link to={`/product/${product.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <div className="product-image-container">
+                    <img src={product.image_url || '/placeholder.jpg'} alt={product.name} className="product-image" />
+                    <div className="product-actions" onClick={e => e.preventDefault()}>
+                      <button className="icon-btn"><Heart size={20} /></button>
+                      <button className="icon-btn"><ShoppingCart size={20} /></button>
+                    </div>
+                  </div>
+                  <div className="product-info">
+                    <span className="product-category">{product.category}</span>
+                    <h3 className="product-name">{product.name}</h3>
+                    <div className="product-prices">
+                      {product.discount_price ? (
+                        <>
+                          <span className="product-price">₹{product.discount_price}</span>
+                          <span className="product-price-old" style={{ textDecoration: 'line-through', color: '#999', fontSize: '0.8rem', marginLeft: '8px' }}>₹{product.price}</span>
+                        </>
+                      ) : (
+                        <span className="product-price">₹{product.price}</span>
+                      )}
+                    </div>
+                  </div>
+                </Link>
               </div>
-              <div className="product-info">
-                <span className="product-category">{product.category}</span>
-                <h3 className="product-name">{product.name}</h3>
-                <span className="product-price">{product.price}</span>
-              </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </div>
