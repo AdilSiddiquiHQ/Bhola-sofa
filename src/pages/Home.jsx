@@ -95,7 +95,8 @@ const Home = () => {
   ];
 
   useEffect(() => {
-    const cycleTime = 3 * 60 * 60 * 1000;
+    // 14 hours creates believable urgency for high-ticket items like furniture
+    const cycleTime = 14 * 60 * 60 * 1000;
     const updateTimer = () => {
       const now = new Date().getTime();
       const timePassed = now % cycleTime;
@@ -277,11 +278,11 @@ const Home = () => {
                       <div className="product-pricing">
                         {product.discount_price ? (
                           <>
-                            <span className="price-new">₹{product.discount_price}</span>
-                            <span className="price-old">₹{product.price}</span>
+                            <span className="price-new">₹{product.discount_price.toLocaleString('en-IN')}</span>
+                            <span className="price-old">₹{product.price.toLocaleString('en-IN')}</span>
                           </>
                         ) : (
-                          <span className="price-new">₹{product.price}</span>
+                          <span className="price-new">₹{product.price.toLocaleString('en-IN')}</span>
                         )}
                       </div>
                     </div>
