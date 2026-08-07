@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
-import { ChevronLeft, MessageCircle, Truck, ShieldCheck, Check } from 'lucide-react';
+import { useWishlist } from '../context/WishlistContext';
+import { ChevronLeft, MessageCircle, Truck, ShieldCheck, Check, Heart } from 'lucide-react';
 import './ProductPage.css';
 
 export default function ProductPage() {
   const { id } = useParams();
+  const { toggleWishlist, isInWishlist } = useWishlist();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -94,12 +96,23 @@ export default function ProductPage() {
               </div>
             </div>
 
-            <div className="product-page-actions" style={{ marginTop: '2rem' }}>
-              <a href={`https://wa.me/919204775927?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="btn-buy-now">
+            <div className="product-page-actions" style={{ marginTop: '2rem', display: 'flex', gap: '1rem' }}>
+              <a href={`https://wa.me/919204775927?text=${whatsappMessage}`} target="_blank" rel="noopener noreferrer" className="btn-buy-now" style={{ flex: 1 }}>
                 <MessageCircle size={20} /> Buy via WhatsApp
               </a>
-              <p className="action-hint">Clicking this will open WhatsApp to confirm your order.</p>
+              <button 
+                onClick={() => toggleWishlist(product)} 
+                style={{ 
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', 
+                  padding: '12px 20px', borderRadius: '4px', border: '1px solid #ddd', 
+                  background: 'white', cursor: 'pointer', fontWeight: 'bold' 
+                }}
+              >
+                <Heart size={20} fill={isInWishlist(product.id) ? "red" : "none"} color={isInWishlist(product.id) ? "red" : "currentColor"} /> 
+                {isInWishlist(product.id) ? 'Saved' : 'Save'}
+              </button>
             </div>
+            <p className="action-hint" style={{ marginTop: '0.5rem' }}>Clicking "Buy via WhatsApp" will open WhatsApp to confirm your order.</p>
           </div>
         </div>
       </div>

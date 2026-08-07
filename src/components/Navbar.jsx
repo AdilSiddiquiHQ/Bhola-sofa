@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, User, Heart, ShoppingCart, MapPin, Menu, X, ChevronDown, Edit2 } from 'lucide-react';
+import { useWishlist } from '../context/WishlistContext';
 import './Navbar.css';
 
 const Navbar = () => {
+  const { wishlistItems } = useWishlist();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [pincode, setPincode] = useState('831006');
   const [isEditingPincode, setIsEditingPincode] = useState(false);
@@ -107,8 +109,9 @@ const Navbar = () => {
           </div>
 
           <div className="header-actions">
-            <Link to="#" className="action-item">
+            <Link to="/wishlist" className="action-item cart-item">
               <Heart size={22} />
+              {wishlistItems.length > 0 && <span className="cart-badge">{wishlistItems.length}</span>}
               <span>WISHLIST</span>
             </Link>
             <Link to="#" className="action-item cart-item">

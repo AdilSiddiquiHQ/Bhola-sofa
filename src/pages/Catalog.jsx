@@ -4,8 +4,10 @@ import './Catalog.css';
 
 import { supabase } from '../supabaseClient';
 import { Link } from 'react-router-dom';
+import { useWishlist } from '../context/WishlistContext';
 
 const Catalog = () => {
+  const { toggleWishlist, isInWishlist } = useWishlist();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -58,7 +60,9 @@ const Catalog = () => {
                   <div className="product-image-container">
                     <img src={product.image_url || '/placeholder.jpg'} alt={product.name} className="product-image" />
                     <div className="product-actions" onClick={e => e.preventDefault()}>
-                      <button className="icon-btn"><Heart size={20} /></button>
+                      <button className="icon-btn" onClick={() => toggleWishlist(product)}>
+                        <Heart size={20} fill={isInWishlist(product.id) ? "red" : "none"} color={isInWishlist(product.id) ? "red" : "currentColor"} />
+                      </button>
                       <button className="icon-btn"><ShoppingCart size={20} /></button>
                     </div>
                   </div>
