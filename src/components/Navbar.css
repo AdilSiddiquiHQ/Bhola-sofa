@@ -55,7 +55,8 @@
 .utility-left {
   display: flex;
   align-items: center;
-  gap: 4px;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .pin-icon {
@@ -81,7 +82,44 @@
   display: none;
 }
 
+.mobile-utility-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.mobile-action-icon {
+  color: #FFFFFF;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.mobile-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background-color: var(--accent-color);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: bold;
+  height: 16px;
+  min-width: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+}
+
 @media (min-width: 768px) {
+  .utility-left {
+    width: auto;
+    justify-content: flex-start;
+  }
+  .mobile-utility-actions {
+    display: none;
+  }
   .utility-right {
     display: flex;
     align-items: center;

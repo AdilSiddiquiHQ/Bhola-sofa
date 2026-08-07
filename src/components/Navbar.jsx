@@ -68,30 +68,44 @@ const Navbar = () => {
       <div className="utility-header">
         <div className="container utility-container">
           <div className="utility-left">
-            <MapPin size={14} className="pin-icon" /> 
-            <span className="deliver-text">Deliver to</span> 
-            {isEditingPincode ? (
-              <form onSubmit={handlePincodeSubmit} className="pincode-form">
-                <input 
-                  type="text" 
-                  value={tempPincode} 
-                  onChange={(e) => setTempPincode(e.target.value)}
-                  maxLength={6}
-                  placeholder="Enter Pincode"
-                  autoFocus
-                />
-                <button type="submit">Check</button>
-                <button type="button" onClick={() => setIsEditingPincode(false)}><X size={12} /></button>
-              </form>
-            ) : (
-              <>
-                <span className="pincode-text">{pincode}</span>
-                <Edit2 size={12} className="edit-icon" onClick={() => {
-                  setTempPincode(pincode);
-                  setIsEditingPincode(true);
-                }} />
-              </>
-            )}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <MapPin size={14} className="pin-icon" /> 
+              <span className="deliver-text">Deliver to</span> 
+              {isEditingPincode ? (
+                <form onSubmit={handlePincodeSubmit} className="pincode-form">
+                  <input 
+                    type="text" 
+                    value={tempPincode} 
+                    onChange={(e) => setTempPincode(e.target.value)}
+                    maxLength={6}
+                    placeholder="Enter Pincode"
+                    autoFocus
+                  />
+                  <button type="submit">Check</button>
+                  <button type="button" onClick={() => setIsEditingPincode(false)}><X size={12} /></button>
+                </form>
+              ) : (
+                <>
+                  <span className="pincode-text">{pincode}</span>
+                  <Edit2 size={12} className="edit-icon" onClick={() => {
+                    setTempPincode(pincode);
+                    setIsEditingPincode(true);
+                  }} />
+                </>
+              )}
+            </div>
+            
+            {/* Mobile Only Cart and Wishlist next to pincode */}
+            <div className="mobile-utility-actions">
+              <Link to="/wishlist" className="mobile-action-icon">
+                <Heart size={16} />
+                {wishlistItems.length > 0 && <span className="mobile-badge">{wishlistItems.length}</span>}
+              </Link>
+              <Link to="/cart" className="mobile-action-icon">
+                <ShoppingCart size={16} />
+                {cartItems.length > 0 && <span className="mobile-badge">{cartItems.length}</span>}
+              </Link>
+            </div>
           </div>
           <div className="utility-right">
             <Link to="/about">About Us</Link>
