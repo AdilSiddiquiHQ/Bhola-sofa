@@ -42,7 +42,7 @@ const Footer = () => {
             </li>
             <li>
               <Mail size={18} style={{ flexShrink: 0, marginTop: '4px' }} /> 
-              <a href="mailto:hello@bholasofa.com" style={{ color: 'inherit', textDecoration: 'none' }} className="hover-underline">hello@bholasofa.com</a>
+              <a href="mailto:Anwar0987@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }} className="hover-underline">Anwar0987@gmail.com</a>
             </li>
           </ul>
         </div>

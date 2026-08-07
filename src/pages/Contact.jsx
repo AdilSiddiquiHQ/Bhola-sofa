@@ -47,8 +47,7 @@ const Contact = () => {
               <div className="info-text">
                 <h3>Email</h3>
                 <p>
-                  <a href="mailto:hello@bholasofa.com" style={{ color: 'inherit', textDecoration: 'none' }} className="hover-underline">hello@bholasofa.com</a><br />
-                  <a href="mailto:support@bholasofa.com" style={{ color: 'inherit', textDecoration: 'none' }} className="hover-underline">support@bholasofa.com</a>
+                  <a href="mailto:Anwar0987@gmail.com" style={{ color: 'inherit', textDecoration: 'none' }} className="hover-underline">Anwar0987@gmail.com</a>
                 </p>
               </div>
             </div>
