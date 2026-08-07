@@ -109,6 +109,7 @@ const Navbar = () => {
           </div>
           <div className="utility-right">
             <Link to="/about">About Us</Link>
+            <Link to="/blog">Blog</Link>
             <span className="pipe">|</span>
             <Link to="/contact">Customer Support</Link>
             <span className="pipe">|</span>
@@ -179,6 +180,7 @@ const Navbar = () => {
         </div>
         <Link to="/" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
         <Link to="/catalog" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Catalog</Link>
+        <Link to="/blog" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Blog</Link>
         <Link to="/about" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
         <Link to="/contact" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
         <Link to="/wishlist" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>

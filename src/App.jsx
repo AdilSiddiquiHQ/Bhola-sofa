@@ -10,6 +10,8 @@ import Admin from './pages/Admin';
 import ProductPage from './pages/ProductPage';
 import Wishlist from './pages/Wishlist';
 import Cart from './pages/Cart';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
 import { WishlistProvider } from './context/WishlistContext';
 import { CartProvider } from './context/CartContext';
 import './index.css';
@@ -31,6 +33,8 @@ function App() {
               <Route path="/admin" element={<Admin />} />
               <Route path="/wishlist" element={<Wishlist />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
             </Routes>
           </main>
           <Footer />
