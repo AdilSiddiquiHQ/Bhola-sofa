@@ -1,4 +1,6 @@
-export const blogPosts = [
+import { moreBlogPosts } from './moreBlogPosts';
+
+const initialBlogPosts = [
   {
     id: '1',
     slug: 'wholesale-factory-prices-jamshedpur',
@@ -204,3 +206,5 @@ Here are the 5 hidden red flags you need to watch out for when buying a sofa in 
     `
   }
 ];
+
+export const blogPosts = [...initialBlogPosts, ...moreBlogPosts];
