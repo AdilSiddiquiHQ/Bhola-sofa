@@ -103,6 +103,7 @@
 
 .admin-table {
   width: 100%;
+  min-width: 600px;
   border-collapse: collapse;
   text-align: left;
 }
@@ -110,7 +111,6 @@
 .admin-table th, .admin-table td {
   padding: 1rem;
   border-bottom: 1px solid #eee;
-  word-break: break-word;
 }
 
 .admin-table th {
