@@ -3,17 +3,35 @@ import { ShoppingCart, Heart, Loader } from 'lucide-react';
 import './Catalog.css';
 
 import { supabase } from '../supabaseClient';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useWishlist } from '../context/WishlistContext';
+import { useCart } from '../context/CartContext';
+import { formatPrice } from '../utils/formatCurrency';
 
 const Catalog = () => {
   const { toggleWishlist, isInWishlist } = useWishlist();
+  const { addToCart, isInCart } = useCart();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const location = useLocation();
+
+  // Extract search query from URL
+  const queryParams = new URLSearchParams(location.search);
+  const searchQuery = queryParams.get('search') || '';
 
   useEffect(() => {
     fetchProducts();
   }, []);
+
+  // Apply both category and search filtering
+  const filteredProducts = products.filter(product => {
+    const matchesCategory = filter === 'All' || product.category === filter;
+    const matchesSearch = searchQuery 
+      ? product.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+        (product.description && product.description.toLowerCase().includes(searchQuery.toLowerCase()))
+      : true;
+    return matchesCategory && matchesSearch;
+  });
 
   const fetchProducts = async () => {
     try {
@@ -63,7 +81,13 @@ const Catalog = () => {
                       <button className="icon-btn" onClick={() => toggleWishlist(product)}>
                         <Heart size={20} fill={isInWishlist(product.id) ? "red" : "none"} color={isInWishlist(product.id) ? "red" : "currentColor"} />
                       </button>
-                      <button className="icon-btn"><ShoppingCart size={20} /></button>
+                      <button 
+                        className="icon-btn" 
+                        onClick={(e) => { e.preventDefault(); addToCart(product); }}
+                        style={{ color: isInCart(product.id) ? '#4CAF50' : 'currentColor' }}
+                      >
+                        <ShoppingCart size={20} />
+                      </button>
                     </div>
                   </div>
                   <div className="product-info">
@@ -72,11 +96,11 @@ const Catalog = () => {
                     <div className="product-prices">
                       {product.discount_price ? (
                         <>
-                          <span className="product-price">₹{product.discount_price}</span>
-                          <span className="product-price-old" style={{ textDecoration: 'line-through', color: '#999', fontSize: '0.8rem', marginLeft: '8px' }}>₹{product.price}</span>
+                          <span className="product-price">₹{formatPrice(product.discount_price)}</span>
+                          <span className="product-price-old" style={{ textDecoration: 'line-through', color: '#999', fontSize: '0.8rem', marginLeft: '8px' }}>₹{formatPrice(product.price)}</span>
                         </>
                       ) : (
-                        <span className="product-price">₹{product.price}</span>
+                        <span className="product-price">₹{formatPrice(product.price)}</span>
                       )}
                     </div>
                   </div>

@@ -1,20 +1,30 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Search, User, Heart, ShoppingCart, MapPin, Menu, X, ChevronDown, Edit2 } from 'lucide-react';
 import { useWishlist } from '../context/WishlistContext';
+import { useCart } from '../context/CartContext';
 import './Navbar.css';
 
 const Navbar = () => {
   const { wishlistItems } = useWishlist();
+  const { cartItems } = useCart();
+  const navigate = useNavigate();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [pincode, setPincode] = useState('831006');
   const [isEditingPincode, setIsEditingPincode] = useState(false);
-  const [tempPincode, setTempPincode] = useState('');
+  const [tempPincode, setTempPincode] = useState('831006');
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  // Validate pincode on load if it's 831006 (default) to show modal? 
-  // No, 831006 is valid.
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/catalog?search=${encodeURIComponent(searchQuery.trim())}`);
+      setIsMobileMenuOpen(false);
+    }
+  };
+
   const handlePincodeSubmit = (e) => {
     e.preventDefault();
     if (tempPincode.match(/^83[12]\d{3}$/)) {
@@ -98,8 +108,15 @@ const Navbar = () => {
         <div className="container header-container">
           
           <div className="header-search">
-            <input type="text" placeholder="Enter Keyword or Item" />
-            <button className="search-btn"><Search size={18} /></button>
+            <form onSubmit={handleSearchSubmit} style={{ display: 'flex', width: '100%' }}>
+              <input 
+                type="text" 
+                placeholder="Search for furniture..." 
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button type="submit" className="search-btn"><Search size={20} /></button>
+            </form>
           </div>
 
           <div className="header-logo">
@@ -114,9 +131,9 @@ const Navbar = () => {
               {wishlistItems.length > 0 && <span className="cart-badge">{wishlistItems.length}</span>}
               <span>WISHLIST</span>
             </Link>
-            <Link to="#" className="action-item cart-item">
+            <Link to="/cart" className="action-item cart-item">
               <ShoppingCart size={22} />
-              <span className="cart-badge">1</span>
+              {cartItems.length > 0 && <span className="cart-badge">{cartItems.length}</span>}
               <span>CART</span>
             </Link>
           </div>
@@ -136,12 +153,26 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div className={`mobile-menu ${isMobileMenuOpen ? 'open' : ''}`}>
         <div className="mobile-search">
-           <input type="text" placeholder="Search..." />
+          <form onSubmit={handleSearchSubmit} style={{ display: 'flex', width: '100%', position: 'relative' }}>
+            <input 
+              type="text" 
+              placeholder="Search..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <button type="submit" style={{ position: 'absolute', right: '10px', top: '10px', background: 'none', border: 'none' }}><Search size={20} color="#666" /></button>
+          </form>
         </div>
         <Link to="/" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
         <Link to="/catalog" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Catalog</Link>
         <Link to="/about" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>About Us</Link>
         <Link to="/contact" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+        <Link to="/wishlist" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+          Wishlist {wishlistItems.length > 0 && `(${wishlistItems.length})`}
+        </Link>
+        <Link to="/cart" className="mobile-nav-link" onClick={() => setIsMobileMenuOpen(false)}>
+          Cart {cartItems.length > 0 && `(${cartItems.length})`}
+        </Link>
       </div>
 
       {/* Out of Area Modal */}

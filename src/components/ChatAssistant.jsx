@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { X, Send, Bot, User, Loader } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
 import './ChatAssistant.css';
 
 const SYSTEM_PROMPT = `You are the official AI assistant for Bhola Sofa, a premium furniture manufacturer located in Jugsalai, Jamshedpur, Jharkhand. The business has a 45+ year legacy, started in 1978 by Mr. MD Aslam (known affectionately as Bhola because of his pure heart) and revived by his son Mr. Anwar in 2026. You specialize in premium beds, sofas, and dining tables. You offer 100% craftsmanship and durability. Be helpful, polite, and persuasive. Do not use markdown headers, keep responses concise and friendly.`;
@@ -103,7 +104,11 @@ const ChatAssistant = ({ isOpen, onClose }) => {
         {messages.map((msg, idx) => (
           <div key={idx} className={`chat-message-wrapper ${msg.role}`}>
             <div className={`chat-bubble ${msg.role}`}>
-              {msg.text}
+              {msg.role === 'assistant' ? (
+                <ReactMarkdown>{msg.text}</ReactMarkdown>
+              ) : (
+                msg.text
+              )}
             </div>
           </div>
         ))}

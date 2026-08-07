@@ -9,14 +9,17 @@ import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 import ProductPage from './pages/ProductPage';
 import Wishlist from './pages/Wishlist';
+import Cart from './pages/Cart';
 import { WishlistProvider } from './context/WishlistContext';
+import { CartProvider } from './context/CartContext';
 import './index.css';
 
 function App() {
   return (
-    <WishlistProvider>
-      <Router>
-        <div className="app-container">
+    <CartProvider>
+      <WishlistProvider>
+        <Router>
+          <div className="app-container">
           <Navbar />
           <main>
             <Routes>
@@ -27,12 +30,14 @@ function App() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/wishlist" element={<Wishlist />} />
+              <Route path="/cart" element={<Cart />} />
             </Routes>
           </main>
           <Footer />
         </div>
       </Router>
     </WishlistProvider>
+    </CartProvider>
   );
 }
 

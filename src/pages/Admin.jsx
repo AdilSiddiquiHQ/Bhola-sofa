@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabaseClient';
 import { Trash2, Edit, Plus, Image as ImageIcon, Loader, LogOut, Wand2 } from 'lucide-react';
+import { formatPrice } from '../utils/formatCurrency';
 import './Admin.css';
 
 const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || 'bholasofa_admin_2026';
@@ -245,6 +246,13 @@ export default function Admin() {
     setEditingId(null);
   };
 
+  const handlePriceChange = (e, field) => {
+    const rawValue = e.target.value.replace(/,/g, '');
+    if (!isNaN(rawValue)) {
+      setFormData({ ...formData, [field]: rawValue });
+    }
+  };
+
   if (!isAuthenticated) {
     return (
       <div className="admin-login-container">
@@ -297,7 +305,7 @@ export default function Admin() {
                     <td><img src={p.image_url || '/placeholder.jpg'} alt={p.name} className="admin-thumb" /></td>
                     <td>{p.name}</td>
                     <td>{p.category}</td>
-                    <td>₹{p.price}</td>
+                    <td>₹{formatPrice(p.price)}</td>
                     <td className="action-cells">
                       <button onClick={() => openEditModal(p)} className="icon-btn edit"><Edit size={16}/></button>
                       <button onClick={() => handleDelete(p.id)} className="icon-btn delete"><Trash2 size={16}/></button>
@@ -333,11 +341,11 @@ export default function Admin() {
               <div className="form-row">
                 <div className="form-group">
                   <label>Regular Price (₹)</label>
-                  <input type="number" value={formData.price} onChange={e => setFormData({...formData, price: e.target.value})} required />
+                  <input type="text" value={formatPrice(formData.price)} onChange={e => handlePriceChange(e, 'price')} required />
                 </div>
                 <div className="form-group">
                   <label>Discount Price (₹)</label>
-                  <input type="number" value={formData.discount_price} onChange={e => setFormData({...formData, discount_price: e.target.value})} />
+                  <input type="text" value={formatPrice(formData.discount_price)} onChange={e => handlePriceChange(e, 'discount_price')} />
                 </div>
               </div>
               <div className="form-group">
