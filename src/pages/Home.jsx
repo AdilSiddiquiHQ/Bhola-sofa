@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, Phone, Bot, Heart, Star, Play, Plus, Minus }
 import { Link } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
 import ChatAssistant from '../components/ChatAssistant';
+import { blogPosts } from '../data/blogPosts';
 import './Home.css';
 
 const WhatsAppIcon = () => (
@@ -339,7 +340,40 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 8. Frequently Asked Questions */}
+      {/* 8. Latest From Blog */}
+      <section className="home-blog-section section">
+        <div className="container">
+          <div className="section-header-custom text-center mb-40">
+            <h2 className="section-title">Latest Furniture Guides & Tips</h2>
+            <p className="section-subtitle">Read our expert advice on buying, maintaining, and styling furniture in Jamshedpur.</p>
+          </div>
+          
+          <div className="product-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
+            {blogPosts.slice(0, 3).map((post) => (
+              <div key={post.id} className="product-card">
+                <Link to={`/blog/${post.slug}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                  <div className="product-img-wrap" style={{ height: '200px' }}>
+                    <img src={post.cover_image} alt={post.title} style={{ objectFit: 'cover' }} />
+                  </div>
+                  <div className="product-details">
+                    <h3 className="product-title" style={{ fontSize: '1.1rem', marginBottom: '10px' }}>{post.title}</h3>
+                    <p style={{ fontSize: '0.9rem', color: '#666', marginBottom: '15px', lineHeight: '1.4' }}>
+                      {post.excerpt}
+                    </p>
+                    <span className="price-new" style={{ fontSize: '0.95rem' }}>Read Article →</span>
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+          
+          <div className="view-more-container text-center mt-40">
+            <Link to="/blog" className="btn-view-more">View All Articles</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. Frequently Asked Questions */}
       <section className="faq-section section">
         <div className="container">
           <h2 className="section-title text-center mb-30">Frequently Asked Questions</h2>

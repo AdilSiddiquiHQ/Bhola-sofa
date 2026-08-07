@@ -22,8 +22,19 @@ const Footer = () => {
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/catalog">Our Collection</Link></li>
+            <li><Link to="/blog">Blog & Guides</Link></li>
             <li><Link to="/about">About Us</Link></li>
             <li><Link to="/contact">Contact</Link></li>
+          </ul>
+        </div>
+
+        <div className="footer-links">
+          <h4 className="footer-title">Top Articles</h4>
+          <ul>
+            <li><Link to="/blog/wholesale-factory-prices-jamshedpur">Wholesale Furniture Prices</Link></li>
+            <li><Link to="/blog/jharkhand-monsoon-furniture-survival-guide">Termite Proof Sofas</Link></li>
+            <li><Link to="/blog/custom-l-shape-sofa-small-flats-jamshedpur">Sofas for Small Flats</Link></li>
+            <li><Link to="/blog/bhola-sofa-45-year-legacy-jamshedpur">Our 1978 Legacy</Link></li>
           </ul>
         </div>
 
